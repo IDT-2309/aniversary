@@ -3,26 +3,26 @@ var dv = document.getElementById("content");
 dv.style.opacity = 0;
 var val = 0;
 
-function timer(){
-	var start = new Date(2023, 11, 15, 23, 11);
-	var t = new Date() - start;
-	var d = Math.floor(t / 1000 / 60 / 60 / 24);
-	var h = Math.floor(t / 1000 / 60 / 60 % 24);
-	if(h < 10){
-		h = "0" + h;
-	}
-	var m = Math.floor(t / 1000 / 60 % 60);
-	if(m < 10){
-		m = "0" + m;
-	}
-	var s = Math.floor(t / 1000 % 60);
-	if(s < 10){
-		s = "0" + s;
-	}
-	document.getElementById("d").innerHTML = d;
-	document.getElementById("h").innerHTML = h;
-	document.getElementById("m").innerHTML = m;
-	document.getElementById("s").innerHTML = s;
+function timer() {
+    // Thời điểm đích
+    const targetDate = new Date('2023-11-15T23:11:00').getTime();
+
+    setInterval(function() {
+
+        const now = new Date().getTime();
+
+        const distance = now - targetDate;
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("d").innerHTML = d;
+        document.getElementById("h").innerHTML = h;
+        document.getElementById("m").innerHTML = m;
+        document.getElementById("s").innerHTML = s;
+    }, 1000);
 }
 
 function fadein(){
